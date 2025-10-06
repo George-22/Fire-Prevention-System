@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fire Prevention System - WiFi</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        header {
+            background-color: #333;
+            color: white;
+            padding: 15px;
+            font-size: 24px;
+            width: 100%;
+        }
+
+        nav {
+            background-color: #444;
+            padding: 10px;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+        }
+
+        .dropdown {
+            position: relative;
+            display: inline-block;
+        }
+
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: #555;
+            min-width: 160px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            z-index: 1;
+        }
+
+        .dropdown-content a {
+            color: white;
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+        }
+
+        .dropdown-content a:hover {
+            background-color: #777;
+        }
+
+        .dropdown:hover .dropdown-content {
+            display: block;
+        }
+
+        nav a, .dropdown-content a {
+            color: white;
+        }
+
+        nav a:visited, .dropdown-content a:visited {
+            color: white;
+        }
+
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            width: 100%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        .iframe-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            gap: 10px;
+        }
+
+        iframe {
+            width: 100%;
+            max-width: 450px;
+            height: 260px;
+            border: none;
+        }
+
+        button {
+            background-color: #008CBA;
+            color: white;
+            padding: 18px 26px;
+            font-size: 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        button:hover {
+            background-color: red;
+        }
+
+        footer {
+            background-color: #333;
+            color: white;
+            padding: 10px;
+            text-align: center;
+            width: 100%;
+        }
+    </style>
+    <script>
+        function sendRequest() {
+            fetch('https://api.thingspeak.com/update?api_key=XC92PFC1WVEY8LME&field7=1', { mode: 'no-cors' })
+                .then(() => alert('Action performed!'))
+                .catch(error => console.error('Error:', error));
+        }
+    </script>
+</head>
+<body>
+    <header>
+        Fire Prevention System - A Project for IoT
+    </header>
+    <nav>
+        <a href="index.html">Home</a>
+        <div class="dropdown">
+            <a href="#">WiFi</a>
+            <div class="dropdown-content">
+                <a href="Wifi.html">WiFi Charts</a>
+                <a href="WIFI_wid.html">WiFi Widgets</a>
+            </div>
+        </div>
+        <div class="dropdown">
+            <a href="#">LoRa</a>
+            <div class="dropdown-content">
+                <a href="LoRa_page.html">LoRa Charts</a>
+                <a href="LoRa_wid.html">LoRa Widgets</a>
+            </div>
+        </div>
+    </nav>
+    
+    
+    <div class="container">
+        <h2>Live Data from WiFi</h2>
+        <div class="iframe-container">
+            <iframe src="https://thingspeak.mathworks.com/channels/2780207/charts/1?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            <iframe src="https://thingspeak.mathworks.com/channels/2780207/charts/2?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            <iframe src="https://thingspeak.mathworks.com/channels/2780207/charts/3?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            <iframe src="https://thingspeak.mathworks.com/channels/2780207/charts/4?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            <iframe src="https://thingspeak.mathworks.com/channels/2780207/charts/5?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+            <iframe src="https://thingspeak.mathworks.com/channels/2780207/charts/6?bgcolor=%23ffffff&color=%23d62020&dynamic=true&results=60&type=line&update=15"></iframe>
+        </div>
+
+        <button onclick="sendRequest()">Alert</button>
+    </div>
+    
+    <footer>
+        From Georgios K and Georgios A
+    </footer>
+</body>
+</html>
